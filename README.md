@@ -52,10 +52,12 @@ key.alias=myApp
 
 ### Generating Keystore
 Next, navigate to a directory that is easily accessible (such as /Users/username/Downloads). **When prompted for a password, enter `oooooo`. Use the same password for the alias!**
-
+**WARNING:** If you get the following error: `Signing key myApp not found`, re-execute the command below, except type out every character instead of copy and pasting.
 ```
 keytool -genkey -v -keystore my-release-key.keystore
 -alias myApp -keyalg RSA -keysize 2048 -validity 10000
 ```
 
 You should now see a file called my-release-key.keystore. Open up `local.properties` and change `key.store` to the full path of the `my-release-key.keystore` file.
+
+Finally, execute ./ipacker.sh. If everything goes well, you will see the generated APK.
