@@ -30,8 +30,8 @@ allsamesize="true" <- Leave this
 backcolour="00FFFFFF" <- Leave this
 attribution="Apple" <- Leave this
 icondir=$8 <- Change this to the directory path of the 'images' folder we created above
-keystore="" <- Leave this for now
-keyname="" <- Leave this for now
+keystore="" <- LEAVE THIS FOR NOW
+keyname="myApp" <- Leave this
 ```
 
 Next, open up ```local.properties```. In another Terminal window, navigate to your SDK folder. Then, enter the command `cd tools` to enter the tools directory. Run the command `./android list targets`. If you do not have any targets installed, you will need to launch the Android SDK Manager and install any build tools (eg 21.0.1).
@@ -44,5 +44,18 @@ sdk.dir=/Users/kedar/Documents/sdk
 key.store.password=oooooo
 key.alias.password=oooooo
 key.store=/Users/Kedar/key.keystore
-key.alias=release_alias
+key.alias=myApp
 ```
+
+### Generating Keystore
+Next, navigate to a directory that is easily accessible (such as /Users/username/Downloads). **When prompted for a password, enter `oooooo`. Use the same password for the alias!**
+
+```
+keytool -genkey -v -keystore my-release-key.keystore
+-alias myApp -keyalg RSA -keysize 2048 -validity 10000
+```
+
+You should now see a file called my-release-key.keystore.
+
+Now, open up `ipacker.sh` again, and change `keystore=""` to hold the directory path of `my-release-key.keystore`
+
