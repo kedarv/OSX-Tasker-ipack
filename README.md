@@ -61,6 +61,7 @@ keytool -genkey -v -keystore my-release-key.keystore
 
 You should now see a file called my-release-key.keystore. Open up `local.properties` and change `key.store` to the full path of the `my-release-key.keystore` file.
 
-Finally, execute ./ipacker.sh. If everything goes well, you will see the generated APK.
-Plug in your device, and execute ./adb install OSX
+Finally, execute `./ipacker.sh`. If everything goes well, you will see the generated APK.
+Plug in your device, and execute `./adb install OSX`
+
 Once the APK has successfully installed, open up Tasker, and the new icons will be listed under "OSX"
