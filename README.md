@@ -17,7 +17,7 @@ Download the following file: https://raw.githubusercontent.com/raincoats/emoji-e
 Navigate to the downloaded file in Terminal, and run `ruby emoji_extractor.rb`
 You should now see a folder called `images` created, with all the emoji extracted.
 Navigate to the images folder, and the resolution you want (eg 160x160) in Terminal.
-The following command will rename every file inside the 160x160 directory (or whichever resolution folder you are in) from <number>.png to i<number>.png. This is done so that the build file can process the image names.
+The following command will rename every file inside the 160x160 directory (or whichever resolution folder you are in) from `<number>.png` to `i<number>.png`. This is done so that the build file can process the image names.
 ```
 for f in *.png; do mv "$f" "i$f"; done
 ```
@@ -52,6 +52,7 @@ key.alias=myApp
 
 ### Generating Keystore
 Next, navigate to a directory that is easily accessible (such as /Users/username/Downloads). **When prompted for a password, enter `oooooo`. Use the same password for the alias!**
+
 **WARNING:** If you get the following error: `Signing key myApp not found`, re-execute the command below, except type out every character instead of copy and pasting.
 ```
 keytool -genkey -v -keystore my-release-key.keystore
@@ -61,3 +62,5 @@ keytool -genkey -v -keystore my-release-key.keystore
 You should now see a file called my-release-key.keystore. Open up `local.properties` and change `key.store` to the full path of the `my-release-key.keystore` file.
 
 Finally, execute ./ipacker.sh. If everything goes well, you will see the generated APK.
+Plug in your device, and execute ./adb install OSX
+Once the APK has successfully installed, open up Tasker, and the new icons will be listed under "OSX"
