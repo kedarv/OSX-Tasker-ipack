@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="%PACKAGE_NAME%"
+      android:versionCode="%VERSION%"
+      android:versionName="%VERSION%"
+      android:installLocation="preferExternal" 
+>
+    <uses-sdk android:minSdkVersion="3" />
+
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />   
+
+    <supports-screens
+	android:xlargeScreens="true"
+        android:largeScreens="true" 
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:resizeable="true"
+        android:anyDensity="true" 
+    />
+
+    <application 	
+		android:icon="@drawable/icons" 
+		android:label="%LABEL%"
+    >
+	<receiver android:name=".IpackReceiver">
+               <intent-filter>
+	               <action android:name="net.dinglisch.android.ipack.actions.QUERY_PACKS" />
+    		         <action android:name="net.dinglisch.android.ipack.actions.QUERY_ICONS" />
+    		         <action android:name="net.dinglisch.android.ipack.actions.NOTIFY" />
+    		         <action android:name="net.dinglisch.android.ipack.actions.NOTIFY_CANCEL" />
+            </intent-filter>
+	</receiver>
+
+	<activity 
+    		android:name=".IpackIconSelect"
+		android:theme="@android:style/Theme.Dialog" 
+	>
+	    	<intent-filter>
+                	<action android:name="net.dinglisch.android.ipack.actions.ICON_SELECT" />
+	                <category android:name="android.intent.category.DEFAULT" />
+	        </intent-filter>
+	</activity>
+    </application>
+</manifest> 
