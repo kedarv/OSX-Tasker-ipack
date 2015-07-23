@@ -29,9 +29,7 @@ label="OSX" <- Leave this
 allsamesize="true" <- Leave this
 backcolour="00FFFFFF" <- Leave this
 attribution="Apple" <- Leave this
-icondir=$8 <- Change this to the directory path of the 'images' folder we created above
-keystore="" <- LEAVE THIS FOR NOW
-keyname="myApp" <- Leave this
+icondir="/Users/user/images" <- Change this to the directory path of the 'images' folder we created above
 ```
 
 Next, open up ```local.properties```. In another Terminal window, navigate to your SDK folder. Then, enter the command `cd tools` to enter the tools directory. Run the command `./android list targets`. If you do not have any targets installed, you will need to launch the Android SDK Manager and install any build tools (eg 21.0.1).
@@ -43,7 +41,7 @@ target=android-21
 sdk.dir=/Users/kedar/Documents/sdk
 key.store.password=oooooo
 key.alias.password=oooooo
-key.store=/Users/Kedar/key.keystore
+key.store=/Users/Kedar/my-release-key.keystore
 key.alias=myApp
 ```
 
@@ -55,7 +53,4 @@ keytool -genkey -v -keystore my-release-key.keystore
 -alias myApp -keyalg RSA -keysize 2048 -validity 10000
 ```
 
-You should now see a file called my-release-key.keystore.
-
-Now, open up `ipacker.sh` again, and change `keystore=""` to hold the directory path of `my-release-key.keystore`
-
+You should now see a file called my-release-key.keystore. Open up `local.properties` and change `key.store` to the full path of the `my-release-key.keystore` file.
