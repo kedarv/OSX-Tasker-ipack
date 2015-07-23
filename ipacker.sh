@@ -135,19 +135,7 @@ if [ "$?" == 0 ]; then
 	cd $startdir
 	ls -l $put
 
-	echo "Install APK..."
-	adb install -r $put
-	
-	montagepath=`which montage`
-
-	if [ "$montagepath" == "" ]; then
-		echo "montage missing: maybe install image-magick to generate screenshot gallery ?"
-	else
-		echo "Generating screenshots..."
-		montage -depth 24 -resize 48x48 -format jpg -background white -geometry +16+16 -tile 4x6 `find $icondir -type f | grep -v " "` $putdir/$shortlabel.screen.jpg
-	fi
-
-
+	echo "APK Generated!"
 	rm -rf $buildbase
 
 	echo Done.
