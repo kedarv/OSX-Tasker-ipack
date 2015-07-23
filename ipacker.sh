@@ -15,9 +15,7 @@ label="OSX"
 allsamesize="true"
 backcolour="00FFFFFF"
 attribution="kedar"
-icondir=$8
-keystore=""
-keyname=""
+icondir="/Users/kedar/Desktop/images/20x20"
 
 smalliconaffix="_"
 androidiconsize="25x25"
@@ -46,9 +44,6 @@ elif [ "$label" == "" ]; then
 elif [ "$icondir" == "" ]; then
 	echo "no icon dir"
 	exit 1
-elif [ "$keystore" == "" ]; then
-	echo "no key store"
-	exit 1
 fi
 
 if [ ! -d $sdkdir ]; then
@@ -57,10 +52,6 @@ if [ ! -d $sdkdir ]; then
 fi
 if [ ! -d "$icondir" ]; then
 	echo "$icondir: not exist"
-	exit 1;
-fi
-if [ ! -f $keystore ]; then
-	echo "$keystore: not exist"
 	exit 1;
 fi
 
@@ -80,8 +71,6 @@ mkdir -p $buildbase/gen
 cp -a res $buildbase
 
 safesdkdir=`echo $sdkdir | sed 's/\//\\\\\\//g'`
-safekeystore=`echo $keystore | sed 's/\//\\\\\\//g'`
-
 echo "build icon data..."
 
 dpath="$buildbase/$srcpath/IpackContent.java"
@@ -121,7 +110,7 @@ echo -e "\n}\n}" >> $dpath
 
 cat AndroidManifest.xml | sed "s/%VERSION%/$version/g" | sed "s/%PACKAGE_NAME%/$packagename/g" | sed "s/%LABEL%/$label/g" > $buildbase/AndroidManifest.xml
 cat build.xml | sed "s/%LABEL%/$shortlabel/g" > $buildbase/build.xml
-cat local.properties | sed "s/%KEY_NAME%/$keyname/g" | sed "s/%KEY_STORE%/$safekeystore/g"  | sed "s/%SDK_DIR%/$safesdkdir/g" >  $buildbase/local.properties
+cat local.properties | sed "s/%SDK_DIR%/$safesdkdir/g" >  $buildbase/local.properties
 cat IpackKeys.java | sed "s/%PACKAGE_NAME%/$packagename/g"  > $buildbase/$srcpath/IpackKeys.java
 cat IpackReceiver.java | sed "s/%PACKAGE_NAME%/$packagename/g" > $buildbase/$srcpath/IpackReceiver.java
 cat IpackIconSelect.java | sed "s/%PACKAGE_NAME%/$packagename/g" | sed "s/%BACK_COLOUR%/$backcolour/g" > $buildbase/$srcpath/IpackIconSelect.java

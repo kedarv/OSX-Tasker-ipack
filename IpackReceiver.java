@@ -11,8 +11,6 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 
-boo
-
 import android.content.res.Resources;
 
 public class IpackReceiver extends BroadcastReceiver {
