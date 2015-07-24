@@ -26,13 +26,14 @@ for f in *.png; do mv "$f" "i$f"; done
 Open up ```ipacker.sh```
 
 ```
-mypath=$0 <- Leave this
-version="1" <- Leave this
+mypath=$0 <- Keep this
+sdkdir="/Users/kedar/Documents/sdk" <- CHANGE THIS
+version="1" <- Keep this
 packagename= "com.example.ipack.OSX" <- CHANGE THIS
-label="OSX" <- Leave this
-allsamesize="true" <- Leave this
-backcolour="00FFFFFF" <- Leave this
-attribution="Apple" <- Leave this
+label="OSX" <- Keep this
+allsamesize="true" <- Keep this
+backcolour="00FFFFFF" <- Keep this
+attribution="Apple" <- Keep this
 icondir="/Users/user/images/20x20" <- Change this to the directory path of the 'images' folder we created above, with the proper resolution that you want (eg 160x160)
 ```
 
@@ -41,12 +42,12 @@ Next, open up ```local.properties```. In another Terminal window, navigate to yo
 Pick any build tools (I chose `android-21)`, and modify the first line of `local.properties` to reflect the proper build tools. Then, change the sdk.dir to the proper path. So, my `local.properties` would look like this:
 
 ```
-target=android-21
-sdk.dir=/Users/kedar/Documents/sdk
-key.store.password=oooooo
-key.alias.password=oooooo
-key.store=/Users/Kedar/my-release-key.keystore
-key.alias=myApp
+target=android-21 <- CHANGE THIS
+sdk.dir=%SDK_DIR% <- Keep this
+key.store.password=oooooo <- Keep this
+key.alias.password=oooooo <- Keep this
+key.store=/Users/Kedar/my-release-key.keystore <- CHANGE THIS
+key.alias=myApp <- Keep this
 ```
 
 ### Generating Keystore
