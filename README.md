@@ -27,7 +27,6 @@ Open up ```ipacker.sh```
 
 ```
 mypath=$0 <- Leave this
-sdkdir= "SDK DIRECTORY" <- CHANGE THIS
 version="1" <- Leave this
 packagename= "com.example.ipack.OSX" <- CHANGE THIS
 label="OSX" <- Leave this
