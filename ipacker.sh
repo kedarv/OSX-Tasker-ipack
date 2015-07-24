@@ -8,7 +8,6 @@
 # generating screenshots, ignore dirs
 
 mypath=$0
-sdkdir="/Users/kedar/Documents/sdk"
 version="1"
 packagename="me.kedarv.ipack.OSX"
 label="OSX"
@@ -23,10 +22,7 @@ startdir=`pwd`
 scriptdir=`dirname mypath`
 cd $scriptdir
 
-if [ "$sdkdir" == "" ]; then
-	echo "no SDK dir"
-	exit 1
-elif [ "$packagename" == "" ]; then
+if [ "$packagename" == "" ]; then
 	echo "no package name"
 	exit 1
 elif [ "$attribution" == "" ]; then
@@ -46,10 +42,6 @@ elif [ "$icondir" == "" ]; then
 	exit 1
 fi
 
-if [ ! -d $sdkdir ]; then
-	echo "$sdkdir: not exist"
-	exit 1;
-fi
 if [ ! -d "$icondir" ]; then
 	echo "$icondir: not exist"
 	exit 1;
@@ -70,7 +62,6 @@ mkdir -p $buildbase/bin
 mkdir -p $buildbase/gen
 cp -a res $buildbase
 
-safesdkdir=`echo $sdkdir | sed 's/\//\\\\\\//g'`
 echo "build icon data..."
 
 dpath="$buildbase/$srcpath/IpackContent.java"
@@ -110,7 +101,6 @@ echo -e "\n}\n}" >> $dpath
 
 cat AndroidManifest.xml | sed "s/%VERSION%/$version/g" | sed "s/%PACKAGE_NAME%/$packagename/g" | sed "s/%LABEL%/$label/g" > $buildbase/AndroidManifest.xml
 cat build.xml | sed "s/%LABEL%/$shortlabel/g" > $buildbase/build.xml
-cat local.properties | sed "s/%SDK_DIR%/$safesdkdir/g" >  $buildbase/local.properties
 cat IpackKeys.java | sed "s/%PACKAGE_NAME%/$packagename/g"  > $buildbase/$srcpath/IpackKeys.java
 cat IpackReceiver.java | sed "s/%PACKAGE_NAME%/$packagename/g" > $buildbase/$srcpath/IpackReceiver.java
 cat IpackIconSelect.java | sed "s/%PACKAGE_NAME%/$packagename/g" | sed "s/%BACK_COLOUR%/$backcolour/g" > $buildbase/$srcpath/IpackIconSelect.java
